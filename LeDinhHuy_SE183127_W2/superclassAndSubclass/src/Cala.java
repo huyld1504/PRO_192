@@ -1,0 +1,36 @@
+
+import java.util.Scanner;
+
+public class Cala {
+    private String owner;
+    private int price;
+
+    public Cala(String owner, int price) {
+        this.owner = owner;
+        this.price = price;
+    }
+
+    public Cala() {
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+    
+    public String toString () {
+        return String.format(this.owner + ", " + this.price);
+    }
+    
+}
