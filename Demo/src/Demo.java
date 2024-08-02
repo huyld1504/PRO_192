@@ -1,3 +1,6 @@
+
+import java.util.StringTokenizer;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,17 +12,17 @@
  * @author Asus
  */
 public class Demo {
-    
+public static boolean check(String s) {
+          String pattern =("(.*)Tutorials(.*)");
 
-     public static void main(String[] args) throws Throwable {
+          System.out.println( "Result:"  +   s.matches(pattern)    ) ;
+    return false;
 
-        int ia[][] = { {1,2}, null };
+    }
 
-        int ja[][] = ia.clone();
+    public static void main(String[] args) {
 
-        System.out.print((ia == ja) + " ");
-
-        System.out.println(ia[0] == ja[0] && ia[1] == ja[1]);
+         Demo.check("Welcome to Tutorialspoint.com") ;
 
     }
 }

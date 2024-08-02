@@ -1,8 +1,9 @@
 package Service;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
-public class Service implements Comparable<Service> {
+public class Service implements Comparable<Service>, Serializable{
 
     private int id, price, quantity;
     private String name;

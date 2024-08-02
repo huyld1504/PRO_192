@@ -15,10 +15,13 @@ public class Tester {
         int choice;
         Scanner sc = new Scanner(System.in);
         ServiceList listOfServices = new ServiceList();
-        listOfServices.add(new Service(100, 500, "Massage"));
-        listOfServices.add(new Service(101, 300, "Tia mong"));
-        listOfServices.add(new Service(102, 700, "Tam cho thu cung"));
-        listOfServices.add(new Service(103, 200, "Tia long"));
+        String fileName = "data.txt";
+//        listOfServices.loadData(fileName);
+        listOfServices.loadBinaryFile("data.dat");
+//        listOfServices.add(new Service(1, 500, "Massage"));
+//        listOfServices.add(new Service(2, 300, "Tia mong"));
+//        listOfServices.add(new Service(3, 700, "Tam cho thu cung"));
+//        listOfServices.add(new Service(4, 200, "Tia long"));
 
         CustomerSet cusSet = new CustomerSet();
         do {
@@ -55,6 +58,8 @@ public class Tester {
                                 Service s = new Service(id, price, name);
 
                                 System.out.println(listOfServices.add(s) ? "Added successfully!!!" : "Failed add!!!");
+//                                listOfServices.saveData(fileName);
+                                listOfServices.saveBinaryFile("data.dat");
                                 break;
                             case 2:
                                 listOfServices.displayAll();
@@ -66,6 +71,8 @@ public class Tester {
                                 boolean resultUpdate = listOfServices.updateService(updateId);
                                 if (resultUpdate == true) {
                                     System.out.println("Updated!!!");
+//                                    listOfServices.saveData(fileName);
+                                    listOfServices.saveBinaryFile("data.dat");
                                 } else {
                                     System.out.println("Failed!!!");
                                 }
@@ -78,6 +85,7 @@ public class Tester {
 
                                 if (resultDelete) {
                                     System.out.println("Deleted successfully!");
+                                    listOfServices.saveData(fileName);
                                 } else {
                                     System.out.println("Deleted failed!1");
                                 }
@@ -122,7 +130,7 @@ public class Tester {
                         }
                     } while (choice2 <= 4);
                     break;
-                case 2: //Manage customer and order
+                case 2:
                     int choiceCusAndOrd;
 
                     do {
@@ -187,7 +195,7 @@ public class Tester {
                                     System.out.print("Add others: ");
                                     answer = sc.nextLine();
                                 } while (answer.equalsIgnoreCase("y"));
-                                cusSet.add(customer); //Hàm này chỉ run <=> có hàm compareTo()
+                                cusSet.add(customer);
                                 customer.exportInfoCustomer();
                                 break;
                             case 2:
@@ -249,6 +257,8 @@ public class Tester {
                                 }
                                 break;
                             case 4:
+                                ServiceList listAfterReport = cusSet.reportQuantityOfService(listOfServices);
+                                listAfterReport.displayAll();
                                 ArrayList<Service> servicesMostUsed = cusSet.getMostUsedSevices(reportService);
                                 System.out.println("The most used service: ");
                                 for (Service service : servicesMostUsed) {
@@ -269,14 +279,14 @@ public class Tester {
                             case 6:
                                 System.out.print("Enter year: ");
                                 String yearRevenue = sc.nextLine();
-                                
-                                if(cusSet.getAllOrdersInYear(yearRevenue).isEmpty()) {
+
+                                if (cusSet.getAllOrdersInYear(yearRevenue).isEmpty()) {
                                     System.out.println("This year did not have any order");
                                 } else {
-                                    System.out.println("The revenue of the first quarter: " +cusSet.displayTotalRevenueByQuarter(1, yearRevenue) + "$");
-                                    System.out.println("The revenue of the second quarter: " +cusSet.displayTotalRevenueByQuarter(2, yearRevenue) + "$");
-                                    System.out.println("The revenue of the third quarter: " +cusSet.displayTotalRevenueByQuarter(3, yearRevenue) + "$");
-                                    System.out.println("The revenue of the fourth quarter: " +cusSet.displayTotalRevenueByQuarter(4, yearRevenue) + "$");
+                                    System.out.println("The revenue of the first quarter: " + cusSet.displayTotalRevenueByQuarter(1, yearRevenue) + "$");
+                                    System.out.println("The revenue of the second quarter: " + cusSet.displayTotalRevenueByQuarter(2, yearRevenue) + "$");
+                                    System.out.println("The revenue of the third quarter: " + cusSet.displayTotalRevenueByQuarter(3, yearRevenue) + "$");
+                                    System.out.println("The revenue of the fourth quarter: " + cusSet.displayTotalRevenueByQuarter(4, yearRevenue) + "$");
                                 }
                                 break;
                         }

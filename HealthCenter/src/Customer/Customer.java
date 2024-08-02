@@ -104,7 +104,6 @@ public class Customer implements Comparable<Customer>{
 
     @Override
     public int compareTo(Customer o) {
-        //Hai customer gọi là trung khi trùng ID
         if (this.id > o.getId()) return 1;
         else if (this.id < o.getId()) return -1;
         else return 0;
